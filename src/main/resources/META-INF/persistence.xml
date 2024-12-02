@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
+    <persistence-unit name="wsregavalia-persistence-unit" transaction-type="RESOURCE_LOCAL">
+        <!-- Provedor JPA -->
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <!-- Configuração do Banco de Dados -->
+        <class>cv.um.avalia.model.Curso</class>
+        <class>cv.um.avalia.model.Aluno</class>
+        <class>cv.um.avalia.model.Avaliacao</class>
+        <class>cv.um.avalia.model.Disciplina</class>
+        <class>cv.um.avalia.model.Turma</class>
+
+        <properties>
+            <!-- Conexão com o banco de dados -->
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/um_regavalia"/>
+            <property name="jakarta.persistence.jdbc.user" value="postgres"/>
+            <property name="jakarta.persistence.jdbc.password" value="Isecmar.22"/>
+            <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+
+            <property name="hibernate.enable_lazy_load_no_trans" value="true"/>
+
+
+            <!-- Configurações do Hibernate -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/> <!-- Pode ser 'create', 'update', 'validate', 'none' -->
+
+            <!-- Configuração de geração automática de schema -->
+            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create" />
+            <!-- Opções: "create", "drop-and-create", "update", "none" -->
+
+            <!-- Para logs SQL -->
+            <property name="jakarta.persistence.sql-load-script-source" value="META-INF/load.sql" />
+            <property name="jakarta.persistence.logging.level" value="FINE" />
+
+        </properties>
+    </persistence-unit>
+</persistence>
